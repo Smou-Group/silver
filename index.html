@@ -1,94 +1,173 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<title>كشف العائلة</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>الكابئن الفضي - Silver Cabin | SMOU GROUP</title>
 
-<style>
-body{
-  font-family: Tahoma, Arial;
-  background:#f7f7f7;
-  padding:20px;
-}
-h2{margin-bottom:10px}
-input{
-  padding:10px;
-  width:300px;
-  font-size:16px;
-}
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:15px;
-  background:#fff;
-}
-th,td{
-  border:1px solid #ccc;
-  padding:10px;
-  text-align:right;
-}
-th{
-  background:#0f5c6e;
-  color:#fff;
-}
-tr:nth-child(even){background:#f2f2f2}
-.note{color:#666;margin-top:8px}
-</style>
+  <style>
+    :root{
+      --brand:#1c6670;
+      --brand2:#15545c;
+      --bg:#f5f7fa;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --shadow: 0 10px 25px rgba(2, 8, 23, 0.08);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 22px 16px 40px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 0;
+    }
+    .brand img{
+      height:44px;
+      width:auto;
+      display:block;
+    }
+    .brand h1{
+      font-size: 18px;
+      margin:0;
+      line-height:1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sub{
+      font-size: 13px;
+      color: var(--muted);
+      margin-top:4px;
+    }
+
+    main{
+      margin-top: 16px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .cta{
+      display:block;
+      text-decoration:none;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 2px solid rgba(28, 102, 112, 0.18);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      cursor:pointer;
+    }
+    .cta:hover{
+      transform: translateY(-2px);
+      border-color: rgba(28, 102, 112, 0.35);
+      box-shadow: 0 14px 30px rgba(2, 8, 23, 0.12);
+    }
+    .cta img{
+      width:100%;
+      height:auto;
+      display:block;
+      background:#eaeef3;
+    }
+
+    .cta-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 12px 14px;
+      background: linear-gradient(90deg, rgba(28,102,112,.08), rgba(21,84,92,.03));
+    }
+    .cta-footer .txt{
+      min-width:0;
+    }
+    .cta-footer .title{
+      margin:0;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .cta-footer .hint{
+      margin:4px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .pill{
+      background: var(--brand);
+      color:#fff;
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    footer{
+      text-align:center;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
 
-<h2>🔎 البحث باسم العائلة</h2>
+    <header>
+      <div class="brand">
+        <!-- ضع لوجو سمو هنا -->
+        <img src="smou-logo.png" alt="SMOU GROUP Logo" onerror="this.style.display='none'">
+        <div>
+          <h1>الكابئن الفضي - Silver Cabin</h1>
+          <div class="sub">SMOU GROUP</div>
+        </div>
+      </div>
+    </header>
 
-<input id="search" placeholder="اكتب اسم العائلة" />
-<div class="note" id="info">يرجى رفع ملف البيانات</div>
-<br><br>
-<input type="file" id="file" accept=".csv">
+    <main>
+      <!-- الضغط على صورة الكابينة يفتح رابط QR -->
+      <a class="cta"
+         href="http://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz"
+         target="_blank" rel="noopener noreferrer">
 
-<table id="table" style="display:none">
-  <thead></thead>
-  <tbody></tbody>
-</table>
+        <!-- ضع صورة الكابينة هنا -->
+        <img src="8-1.jpg" alt="Silver Cabin">
+        
+        <div class="cta-footer">
+          <div class="txt">
+            <p class="title">عرض الكابينة الفضي</p>
+            <p class="hint">اضغط على الصورة لفتح الرابط</p>
+          </div>
+          <div class="pill">فتح الرابط</div>
+        </div>
+      </a>
+    </main>
 
-<script>
-let data=[], headers=[];
-const FAMILY_COL = "العائلة";
+    <footer>
+      © SMOU GROUP — silver.smougroup.com
+    </footer>
 
-document.getElementById("file").addEventListener("change", async e=>{
-  const text = await e.target.files[0].text();
-  const lines = text.trim().split("\n");
-  headers = lines[0].split(",");
-  data = lines.slice(1).map(l=>{
-    let obj={};
-    l.split(",").forEach((v,i)=>obj[headers[i]]=v);
-    return obj;
-  });
-  document.getElementById("info").innerText="تم تحميل البيانات";
-});
-
-document.getElementById("search").addEventListener("input",()=>{
-  const q = document.getElementById("search").value.trim();
-  const table = document.getElementById("table");
-  const thead = table.querySelector("thead");
-  const tbody = table.querySelector("tbody");
-
-  if(!q){ table.style.display="none"; return; }
-
-  const norm = s => (s||"").toString().trim().replace(/\s+/g," ");
-const res = data.filter(r => norm(r[FAMILY_COL]).includes(norm(q)));
-
-  if(!res.length){
-    document.getElementById("info").innerText="لا توجد نتائج";
-    table.style.display="none";
-    return;
-  }
-
-  thead.innerHTML="<tr>"+headers.map(h=>`<th>${h}</th>`).join("")+"</tr>";
-  tbody.innerHTML=res.map(r=>"<tr>"+headers.map(h=>`<td>${r[h]||""}</td>`).join("")+"</tr>").join("");
-  table.style.display="table";
-  document.getElementById("info").innerText=`عدد النتائج: ${res.length}`;
-});
-</script>
-
+  </div>
 </body>
 </html>
