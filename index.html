@@ -1,173 +1,144 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>الكابئن الفضي - Silver Cabin | SMOU GROUP</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>الكابئن الفضي - Silver Cabin | SMOU GROUP</title>
 
-  <style>
-    :root{
-      --brand:#1c6670;
-      --brand2:#15545c;
-      --bg:#f5f7fa;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --shadow: 0 10px 25px rgba(2, 8, 23, 0.08);
-      --radius: 18px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 22px 16px 40px;
-    }
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      box-shadow: var(--shadow);
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 0;
-    }
-    .brand img{
-      height:44px;
-      width:auto;
-      display:block;
-    }
-    .brand h1{
-      font-size: 18px;
-      margin:0;
-      line-height:1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .sub{
-      font-size: 13px;
-      color: var(--muted);
-      margin-top:4px;
-    }
+<style>
+:root{
+  --brand:#1c6670;
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --shadow:0 8px 20px rgba(0,0,0,.08);
+  --radius:16px;
+}
 
-    main{
-      margin-top: 16px;
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 16px;
-    }
+*{box-sizing:border-box}
 
-    .cta{
-      display:block;
-      text-decoration:none;
-      border-radius: 16px;
-      overflow:hidden;
-      border: 2px solid rgba(28, 102, 112, 0.18);
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-      cursor:pointer;
-    }
-    .cta:hover{
-      transform: translateY(-2px);
-      border-color: rgba(28, 102, 112, 0.35);
-      box-shadow: 0 14px 30px rgba(2, 8, 23, 0.12);
-    }
-    .cta img{
-      width:100%;
-      height:auto;
-      display:block;
-      background:#eaeef3;
-    }
+body{
+  margin:0;
+  font-family:Tahoma, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
 
-    .cta-footer{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding: 12px 14px;
-      background: linear-gradient(90deg, rgba(28,102,112,.08), rgba(21,84,92,.03));
-    }
-    .cta-footer .txt{
-      min-width:0;
-    }
-    .cta-footer .title{
-      margin:0;
-      font-size: 16px;
-      font-weight: 700;
-    }
-    .cta-footer .hint{
-      margin:4px 0 0;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .pill{
-      background: var(--brand);
-      color:#fff;
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      white-space: nowrap;
-    }
+.wrap{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
 
-    footer{
-      text-align:center;
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-  </style>
+header{
+  background:var(--card);
+  padding:15px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+header img{
+  height:45px;
+}
+
+header h1{
+  margin:0;
+  font-size:18px;
+}
+
+main{
+  margin-top:20px;
+  background:var(--card);
+  padding:20px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+/* شبكة الصور */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap:20px;
+}
+
+/* الكارت */
+.card{
+  text-align:center;
+}
+
+.card img{
+  width:100%;
+  max-width:260px;
+  height:auto;
+  border-radius:12px;
+  transition:.3s;
+  box-shadow:0 6px 15px rgba(0,0,0,.08);
+}
+
+.card img:hover{
+  transform:scale(1.03);
+}
+
+.card a{
+  display:block;
+  margin-top:10px;
+  text-decoration:none;
+  font-weight:bold;
+  color:var(--brand);
+  font-size:15px;
+}
+
+footer{
+  text-align:center;
+  margin-top:20px;
+  font-size:12px;
+  color:var(--muted);
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
 
-    <header>
-      <div class="brand">
-        <!-- ضع لوجو سمو هنا -->
-        <img src="smou-logo.png" alt="SMOU GROUP Logo" onerror="this.style.display='none'">
-        <div>
-          <h1>الكابئن الفضي - Silver Cabin</h1>
-          <div class="sub">SMOU GROUP</div>
-        </div>
-      </div>
-    </header>
+<div class="wrap">
 
-    <main>
-      <!-- الضغط على صورة الكابينة يفتح رابط QR -->
-      <a class="cta"
-         href="http://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz"
-         target="_blank" rel="noopener noreferrer">
+<header>
+  <img src="smou-logo.png" alt="SMOU Logo">
+  <h1>الكابئن الفضي - Silver Cabin</h1>
+</header>
 
-        <!-- ضع صورة الكابينة هنا -->
-        <img src="8-1.jpg" alt="CMPC-004">
-        
-        <div class="cta-footer">
-          <div class="txt">
-            <p class="title">عرض CMPC-004</p>
-            <p class="hint">اضغط على الصورة لفتح الرابط</p>
-          </div>
-          <div class="pill">فتح الرابط</div>
-        </div>
-      </a>
-    </main>
+<main>
 
-    <footer>
-      © SMOU GROUP — silver.smougroup.com
-    </footer>
+<div class="grid">
 
+  <!-- الكابينة الأولى -->
+  <div class="card">
+    <img src="8-1.png" alt="CMPC-004">
+    <a href="http://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz" target="_blank">
+      CMPC-004
+    </a>
   </div>
+
+  <!-- تقدر تضيف كابينة ثانية هنا -->
+  <!--
+  <div class="card">
+    <img src="8-2.png" alt="CMPC-005">
+    <a href="#">CMPC-005</a>
+  </div>
+  -->
+
+</div>
+
+</main>
+
+<footer>
+© SMOU GROUP — silver.smougroup.com
+</footer>
+
+</div>
+
 </body>
 </html>
