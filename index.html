@@ -1,173 +1,150 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>الكبائن الفضية | Silver Cabin — SMOU GROUP</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>الكبائن الفضية | Silver Cabin — SMOU GROUP</title>
 
-  <style>
-    :root{
-      --blue:#0b5fa8;
-      --blue2:#0a4f8a;
-      --bg:#f4f8ff;
-      --card:#ffffff;
-      --text:#0b1b2b;
-      --muted:#6b7c93;
-      --shadow: 0 10px 30px rgba(11,95,168,.12);
-      --radius: 18px;
-      --border: 1px solid rgba(11,95,168,.12);
-    }
-
-    body{
-      margin:0;
-      font-family: system-ui;
-      background:var(--bg);
-      color:var(--text);
-    }
-
-    header{
-      background:linear-gradient(90deg,var(--blue2),var(--blue));
-      color:#fff;
-      padding:15px 20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-
-    header h1{
-      margin:0;
-      font-size:18px;
-    }
-
-    main{
-      max-width:1200px;
-      margin:30px auto;
-      padding:0 15px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-      gap:20px;
-    }
-
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      cursor:pointer;
-      transition:.2s;
-    }
-
-    .card:hover{
-      transform:translateY(-4px);
-    }
-
-    .thumb{
-      position:relative;
-      aspect-ratio:3/4;
-      background:#eaf2ff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .thumb img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .badge{
-      position:absolute;
-      top:10px;
-      left:10px;
-      background:var(--blue);
-      color:#fff;
-      padding:5px 10px;
-      border-radius:20px;
-      font-size:12px;
-      font-weight:bold;
-    }
-
-    .content{
-      padding:15px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-
-    .open{
-      background:var(--blue);
-      color:#fff;
-      padding:8px 12px;
-      border-radius:10px;
-      text-decoration:none;
-      font-size:13px;
-    }
-
-    .open:hover{
-      background:var(--blue2);
-    }
-  </style>
+<style>
+:root{
+--blue:#0b5fa8;
+--blue2:#094a85;
+--bg:#f2f7ff;
+--card:#ffffff;
+--shadow:0 10px 30px rgba(0,0,0,.08);
+--radius:18px;
+}
+body{margin:0;font-family:system-ui;background:var(--bg);}
+header{
+background:linear-gradient(90deg,var(--blue2),var(--blue));
+color:#fff;padding:18px 25px;
+display:flex;justify-content:space-between;align-items:center;
+}
+header h1{margin:0;font-size:18px}
+main{max-width:1300px;margin:40px auto;padding:0 20px}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:25px;
+}
+.card{
+background:var(--card);
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+overflow:hidden;
+transition:.25s;
+cursor:pointer;
+}
+.card:hover{transform:translateY(-6px)}
+.thumb{
+aspect-ratio:3/4;
+background:#e9f1ff;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+.thumb img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+.code{
+position:absolute;
+top:10px;
+left:10px;
+background:var(--blue);
+color:#fff;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+.bottom{
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+.open{
+background:var(--blue);
+color:#fff;
+padding:7px 14px;
+border-radius:10px;
+text-decoration:none;
+font-size:13px;
+}
+.open:hover{background:var(--blue2)}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>الكبائن الفضية — Silver Cabin</h1>
-  <span>SMOU GROUP</span>
+<h1>الكبائن الفضية — Silver Cabin</h1>
+<strong>SMOU GROUP</strong>
 </header>
 
 <main>
-  <div class="grid" id="grid"></div>
+<div class="grid" id="grid"></div>
 </main>
 
 <script>
 const items = [
-  { code: "S001", img: "S001.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz" },
-  { code: "S002", img: "S002.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgy" },
-  { code: "S003", img: "S003.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg2" },
-  { code: "S004", img: "S004.png", href: "https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYwOTg=" },
-  { code: "S005", img: "S005.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg5" },
-  { code: "S006", img: "S006.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTkw" },
-  { code: "S007", img: "S007.png", href: "https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYxMDE=" },
-  { code: "S008", img: "S008.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcy" },
-  { code: "S009", img: "S009.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcz" },
-  { code: "S010", img: "S010.png", href: "https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzQ=" },
-  { code: "S011", img: "S011.png", href: "https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzU=" },
-  { code: "S012", img: "S012.png", href: "https://www.720yun.com/t/c33jr0wmkk8#scene_id=26482653" },
-  { code: "S013", img: "S013.png", href: "https://www.720yun.com/t/2d6jr5swua2#scene_id=26262322" },
-  { code: "S014", img: "S014.png", href: "https://www.720yun.com/t/c77jr5swvO7#scene_id=26261605" },
-  { code: "S015", img: "S015.png", href: "https://my.3vfang.com/p/pre/kr4693/26825/indexwx.html" },
-  { code: "S016", img: "S016.png", href: "https://my.3vfang.com/p/pre/kr4693/26872/indexwx.html" },
-  { code: "S017", img: "S017.png", href: "https://www.720yun.com/t/1ebjzgwyev4#scene_id=9454096" },
-  { code: "S018", img: "S018.png", href: "https://www.720yun.com/t/4cejzOeOtu1#scene_id=9630448" },
-  { code: "S019", img: "S019.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY1" },
-  { code: "S020", img: "S020.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY2" },
-  { code: "S021", img: "S021.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY5" }
+{img:"S001.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz"},
+{img:"S002.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgy"},
+{img:"S003.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg2"},
+{img:"S004.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYwOTg="},
+{img:"S005.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg5"},
+{img:"S006.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTkw"},
+{img:"S007.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYxMDE="},
+{img:"S008.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcy"},
+{img:"S009.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcz"},
+{img:"S010.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzQ="},
+{img:"S011.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzU="},
+{img:"S012.png",href:"https://www.720yun.com/t/c33jr0wmkk8#scene_id=26482653"},
+{img:"S013.png",href:"https://www.720yun.com/t/2d6jr5swua2#scene_id=26262322"},
+{img:"S014.png",href:"https://www.720yun.com/t/c77jr5swvO7#scene_id=26261605"},
+{img:"S015.png",href:"https://my.3vfang.com/p/pre/kr4693/26825/indexwx.html"},
+{img:"S016.png",href:"https://my.3vfang.com/p/pre/kr4693/26872/indexwx.html"},
+{img:"S017.png",href:"https://www.720yun.com/t/1ebjzgwyev4#scene_id=9454096"},
+{img:"S018.png",href:"https://www.720yun.com/t/4cejzOeOtu1#scene_id=9630448"},
+{img:"S019.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY1"},
+{img:"S020.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY2"},
+{img:"S021.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY5"},
+{img:"S022.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcy"},
+{img:"S023.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcz"},
+{img:"S024.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcw"},
+{img:"S025.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc0"},
+{img:"S026.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc2"},
+{img:"S027.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc3"},
+{img:"S028.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc4"},
+{img:"S029.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgx"},
+{img:"S030.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgy"},
+{img:"S031.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgw"},
+{img:"S032.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgz"},
+{img:"S033.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg1"},
+{img:"S034.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg2"},
+{img:"S035.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg0"}
 ];
 
-const grid = document.getElementById("grid");
+const grid=document.getElementById("grid");
 
-items.forEach(it => {
-  const card = document.createElement("div");
-  card.className = "card";
-
-  card.innerHTML = `
-    <div class="thumb">
-      <span class="badge">${it.code}</span>
-      <img src="${it.img}" alt="${it.code}" 
-           onerror="this.outerHTML='<div style=\\'color:#0b5fa8;font-weight:bold\\'>Image not found: ${it.code}</div>';">
-    </div>
-    <div class="content">
-      <strong>${it.code}</strong>
-      <a class="open" href="${it.href}" target="_blank">فتح</a>
-    </div>
-  `;
-
-  grid.appendChild(card);
+items.forEach(it=>{
+const code=it.img.replace(".png","");
+const card=document.createElement("div");
+card.className="card";
+card.innerHTML=`
+<div class="thumb">
+<span class="code">${code}</span>
+<img src="${it.img}" alt="${code}"
+onerror="this.outerHTML='<div style=\\'color:#0b5fa8;font-weight:bold\\'>Image not found: ${code}</div>';">
+</div>
+<div class="bottom">
+<strong>${code}</strong>
+<a class="open" href="${it.href}" target="_blank">فتح</a>
+</div>`;
+grid.appendChild(card);
 });
 </script>
 
