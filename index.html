@@ -19,7 +19,6 @@
       --gap: 18px;
       --border: 1px solid rgba(11,95,168,.12);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -31,14 +30,12 @@
         radial-gradient(900px 300px at 85% 0%, rgba(11,95,168,.12), transparent 60%),
         var(--bg);
     }
-
     .topbar{
       position:sticky; top:0; z-index:10;
       background: linear-gradient(90deg, var(--blue2), var(--blue));
       color:#fff;
       box-shadow: 0 8px 18px rgba(0,0,0,.12);
     }
-
     .topbar-inner{
       max-width:1200px;
       margin:0 auto;
@@ -47,14 +44,12 @@
       align-items:center;
       gap:14px;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
-      min-width: 220px;
+      min-width: 240px;
     }
-
     .brand img{
       width:44px; height:44px;
       border-radius:50%;
@@ -63,7 +58,6 @@
       object-fit:contain;
       box-shadow: 0 8px 16px rgba(0,0,0,.18);
     }
-
     .brand .titles{
       display:flex;
       flex-direction:column;
@@ -71,7 +65,7 @@
     }
     .brand .titles .h{
       font-size:16px;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.2px;
     }
     .brand .titles .s{
@@ -87,7 +81,6 @@
       flex-wrap:wrap;
       justify-content:flex-end;
     }
-
     .search{
       position:relative;
       min-width: 240px;
@@ -110,7 +103,7 @@
       cursor:pointer;
       padding:10px 12px;
       border-radius:12px;
-      font-weight:700;
+      font-weight:900;
       background:#fff;
       color:var(--blue2);
       box-shadow: 0 10px 18px rgba(0,0,0,.12);
@@ -125,7 +118,6 @@
       margin: 22px auto 30px;
       padding: 0 16px;
     }
-
     .hero{
       display:flex;
       align-items:flex-end;
@@ -133,33 +125,29 @@
       gap: 14px;
       margin: 14px 0 18px;
     }
-
     .hero .title{
       display:flex;
       flex-direction:column;
       gap:6px;
     }
-
     .hero .title h1{
       margin:0;
       font-size: 24px;
       font-weight: 900;
       color: var(--blue2);
     }
-
     .hero .title p{
       margin:0;
       color:var(--muted);
       font-size:14px;
     }
-
     .count{
       color: var(--blue2);
       background: rgba(11,95,168,.08);
       border: var(--border);
       padding: 10px 12px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 13px;
       white-space:nowrap;
     }
@@ -169,10 +157,7 @@
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: var(--gap);
     }
-
-    @media (max-width: 1050px){
-      .grid{ grid-template-columns: repeat(4, minmax(0,1fr)); }
-    }
+    @media (max-width: 1050px){ .grid{ grid-template-columns: repeat(4, minmax(0,1fr)); } }
     @media (max-width: 820px){
       .grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
       .brand{ min-width:auto; }
@@ -192,6 +177,7 @@
       display:flex;
       flex-direction:column;
       min-height: 260px;
+      cursor:pointer;
     }
     .card:hover{
       transform: translateY(-2px);
@@ -203,12 +189,11 @@
       position:relative;
       aspect-ratio: 3/4;
       background: linear-gradient(180deg, rgba(11,95,168,.06), rgba(11,95,168,.02));
+      overflow:hidden;
       display:flex;
       align-items:center;
       justify-content:center;
-      overflow:hidden;
     }
-
     .thumb img{
       width:100%;
       height:100%;
@@ -239,7 +224,6 @@
       justify-content:space-between;
       gap:10px;
     }
-
     .code{
       display:flex;
       flex-direction:column;
@@ -257,10 +241,7 @@
       text-overflow:ellipsis;
     }
     .code a:hover{ text-decoration: underline; }
-    .code span{
-      color: var(--muted);
-      font-size: 12px;
-    }
+    .code span{ color: var(--muted); font-size: 12px; }
 
     .open{
       margin-inline-start:auto;
@@ -287,16 +268,13 @@
       gap: 10px;
       flex-wrap:wrap;
     }
-    footer a{ color: var(--blue2); text-decoration:none; font-weight:800; }
+    footer a{ color: var(--blue2); text-decoration:none; font-weight:900; }
     footer a:hover{ text-decoration:underline; }
-
-    .hidden{ display:none !important; }
   </style>
 </head>
 
 <body>
-  <!-- ✅ عدّل مسار اللوجو هنا -->
-  <!-- ضع ملف اللوجو داخل نفس المجلد باسم: logo.png  أو عدّل المسار -->
+  <!-- ضع ملف اللوجو داخل نفس المجلد باسم: logo.png (أو عدّل المسار) -->
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -309,7 +287,7 @@
 
       <div class="controls">
         <div class="search">
-          <input id="searchInput" type="search" placeholder="ابحث بالرقم… مثال: S005" autocomplete="off" />
+          <input id="searchInput" type="search" placeholder="ابحث بالرقم… مثال: S012" autocomplete="off" />
         </div>
         <button class="btn" id="openAllBtn" type="button" title="فتح كل الروابط في تبويبات جديدة">فتح الكل</button>
       </div>
@@ -331,46 +309,53 @@
   <footer>
     <div>© <span id="year"></span> SMOU GROUP — silver.smougroup.com</div>
     <div>
-      ملاحظة: ضع صور الكبائن داخل مجلد <b>images/</b> بأسماء <b>S001.jpg</b> … <b>S021.jpg</b>
+      ضع الصور داخل مجلد <b>images/</b> بأسماء <b>S001.png</b> … <b>S035.png</b>
     </div>
   </footer>
 
   <script>
     // =========================
-    // ✅ 1) ضع الصور داخل: images/
-    //    مثال: images/S001.jpg ... images/S021.jpg
-    //
-    // ✅ 2) عدّل الروابط لكل كابينة داخل القائمة بالأسفل:
-    //    ضع رابط 3vfang لكل S001..S021
+    // ✅ الصور بصيغة PNG داخل: images/
+    //    images/S001.png ... images/S035.png
     // =========================
 
     const items = [
-      // مثال جاهز (غيّره حسب روابطك الحقيقية)
-      { code: "S001", href: "http://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz" },
-      { code: "S002", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S002" },
-      { code: "S003", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S003" },
-      { code: "S004", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S004" },
-      { code: "S005", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S005" },
-      { code: "S006", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S006" },
-      { code: "S007", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S007" },
-      { code: "S008", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S008" },
-      { code: "S009", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S009" },
-      { code: "S010", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S010" },
-      { code: "S011", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S011" },
-      { code: "S012", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S012" },
-      { code: "S013", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S013" },
-      { code: "S014", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S014" },
-      { code: "S015", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S015" },
-      { code: "S016", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S016" },
-      { code: "S017", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S017" },
-      { code: "S018", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S018" },
-      { code: "S019", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S019" },
-      { code: "S020", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S020" },
-      { code: "S021", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S021" },
+      { code: "S001", img: "S001.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz" },
+      { code: "S002", img: "S002.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgy" },
+      { code: "S003", img: "S003.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg2" },
+      { code: "S004", img: "S004.png", href: "https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYwOTg=" },
+      { code: "S005", img: "S005.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg5" },
+      { code: "S006", img: "S006.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTkw" },
+      { code: "S007", img: "S007.png", href: "https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYxMDE=" },
+      { code: "S008", img: "S008.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcy" },
+      { code: "S009", img: "S009.png", href: "https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcz" },
+      { code: "S010", img: "S010.png", href: "https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzQ=" },
+      { code: "S011", img: "S011.png", href: "https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzU=" },
+      { code: "S012", img: "S012.png", href: "https://www.720yun.com/t/c33jr0wmkk8#scene_id=26482653" },
+      { code: "S013", img: "S013.png", href: "https://www.720yun.com/t/2d6jr5swua2#scene_id=26262322" },
+      { code: "S014", img: "S014.png", href: "https://www.720yun.com/t/c77jr5swvO7#scene_id=26261605" },
+      { code: "S015", img: "S015.png", href: "https://my.3vfang.com/p/pre/kr4693/26825/indexwx.html" },
+      { code: "S016", img: "S016.png", href: "https://my.3vfang.com/p/pre/kr4693/26872/indexwx.html" },
+      { code: "S017", img: "S017.png", href: "https://www.720yun.com/t/1ebjzgwyev4#scene_id=9454096" },
+      { code: "S018", img: "S018.png", href: "https://www.720yun.com/t/4cejzOeOtu1#scene_id=9630448" },
+      { code: "S019", img: "S019.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY1" },
+      { code: "S020", img: "S020.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY2" },
+      { code: "S021", img: "S021.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY5" },
+      { code: "S022", img: "S022.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcy" },
+      { code: "S023", img: "S023.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcz" },
+      { code: "S024", img: "S024.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcw" },
+      { code: "S025", img: "S025.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc0" },
+      { code: "S026", img: "S026.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc2" },
+      { code: "S027", img: "S027.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc3" },
+      { code: "S028", img: "S028.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc4" },
+      { code: "S029", img: "S029.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgx" },
+      { code: "S030", img: "S030.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgy" },
+      { code: "S031", img: "S031.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgw" },
+      { code: "S032", img: "S032.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgz" },
+      { code: "S033", img: "S033.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg1" },
+      { code: "S034", img: "S034.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg2" },
+      { code: "S035", img: "S035.png", href: "https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg0" },
     ];
-
-    // 🔧 غيّر امتداد الصور لو PNG بدل JPG
-    const IMG_EXT = "jpg"; // "png" أو "webp" حسب ملفاتك
 
     const grid = document.getElementById("grid");
     const searchInput = document.getElementById("searchInput");
@@ -379,11 +364,16 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+      }[c]));
+    }
+
     function render(list){
       grid.innerHTML = "";
-
       list.forEach((it) => {
-        const imgSrc = `images/${it.code}.${IMG_EXT}`;
+        const imgSrc = `images/${it.img}`;
 
         const card = document.createElement("article");
         card.className = "card";
@@ -391,22 +381,23 @@
 
         // يجعل الضغط على الكارت كله يفتح الرابط
         card.addEventListener("click", (e) => {
-          // لو ضغط على رابط نفسه ما نكرر
           if (e.target.closest("a")) return;
           window.open(it.href, "_blank", "noopener,noreferrer");
         });
 
+        const safeCode = escapeHtml(it.code);
+
         card.innerHTML = `
-          <div class="thumb" role="img" aria-label="${it.code}">
-            <span class="badge">${it.code}</span>
-            <img src="${imgSrc}" alt="${it.code}" loading="lazy"
-                 onerror="this.src='data:image/svg+xml;utf8,<?xml version=\\'1.0\\' encoding=\\'UTF-8\\'?><svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'600\\' height=\\'800\\'><rect width=\\'100%\\' height=\\'100%\\' fill=\\'%23eaf2ff\\'/><text x=\\'50%\\' y=\\'50%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' fill=\\'%230b5fa8\\' font-family=\\'Arial\\' font-size=\\'22\\'>Image not found: ${it.code}</text></svg>';">
+          <div class="thumb" role="img" aria-label="${safeCode}">
+            <span class="badge">${safeCode}</span>
+            <img src="${imgSrc}" alt="${safeCode}" loading="lazy"
+                 onerror="this.src='data:image/svg+xml;utf8,<?xml version=\\'1.0\\' encoding=\\'UTF-8\\'?><svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'600\\' height=\\'800\\'><rect width=\\'100%\\' height=\\'100%\\' fill=\\'%23eaf2ff\\'/><text x=\\'50%\\' y=\\'50%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' fill=\\'%230b5fa8\\' font-family=\\'Arial\\' font-size=\\'22\\'>Image not found: ${safeCode}</text></svg>';">
           </div>
 
           <div class="content">
             <div class="code">
-              <a href="${it.href}" target="_blank" rel="noopener noreferrer" aria-label="فتح ${it.code}">
-                ${it.code}
+              <a href="${it.href}" target="_blank" rel="noopener noreferrer" aria-label="فتح ${safeCode}">
+                ${safeCode}
               </a>
               <span>اضغط للعرض</span>
             </div>
@@ -422,10 +413,7 @@
 
     function filter(){
       const q = (searchInput.value || "").trim().toLowerCase();
-      if(!q){
-        render(items);
-        return;
-      }
+      if(!q){ render(items); return; }
       const filtered = items.filter(x => x.code.toLowerCase().includes(q));
       render(filtered);
     }
@@ -433,13 +421,12 @@
     searchInput.addEventListener("input", filter);
 
     openAllBtn.addEventListener("click", () => {
-      // فتح الروابط دفعة واحدة قد يمنعه المتصفح إذا لم يكن مسموحاً
+      // ملاحظة: بعض المتصفحات تمنع فتح عدد كبير من التبويبات
       items.forEach((it, idx) => {
         setTimeout(() => window.open(it.href, "_blank", "noopener,noreferrer"), idx * 120);
       });
     });
 
-    // أول تحميل
     render(items);
   </script>
 </body>
