@@ -295,7 +295,7 @@
       flex-wrap:wrap;
     }
 
-    /* Modal */
+    /* Modal generic */
     .modal-backdrop{
       position:fixed;
       inset:0;
@@ -333,16 +333,13 @@
       display:grid;
       gap: 12px;
     }
-    .row{
-      display:grid;
-      gap:8px;
-    }
+    .row{ display:grid; gap:8px; }
     label{
       font-weight: 900;
       color: var(--blue2);
       font-size: 13px;
     }
-    input[type="text"], input[type="url"]{
+    input[type="text"], input[type="url"], input[type="password"]{
       width:100%;
       padding: 10px 12px;
       border-radius: 12px;
@@ -362,12 +359,6 @@
       flex-wrap:wrap;
       padding: 0 16px 16px;
     }
-    .msg{
-      font-size: 12px;
-      font-weight: 900;
-      color: var(--ok);
-      display:none;
-    }
     .close-x{
       border:none;
       background:transparent;
@@ -376,6 +367,12 @@
       font-weight: 900;
       cursor:pointer;
       line-height:1;
+    }
+    .msg{
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--ok);
+      display:none;
     }
   </style>
 </head>
@@ -396,13 +393,9 @@
           <input id="searchInput" type="search" placeholder="ابحث بالرقم… مثال: S012" autocomplete="off" />
         </div>
 
-        <!-- ✅ زر إضافة كابينة -->
+        <!-- الأزرار محمية بكلمة مرور -->
         <button class="btn" id="addBtn" type="button">إضافة كابينة</button>
-
-        <!-- ✅ تصدير JSON -->
-        <button class="btn secondary" id="exportBtn" type="button" title="نسخ القائمة (JSON) لاستخدامها وتثبيتها على السيرفر">
-          تصدير JSON
-        </button>
+        <button class="btn secondary" id="exportBtn" type="button">تصدير JSON</button>
       </div>
     </div>
   </header>
@@ -424,25 +417,47 @@
     <div>الصور داخل <b>images/</b> بأسماء مثل <b>S001.png</b> …</div>
   </footer>
 
-  <!-- Modal إضافة -->
-  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <!-- Modal كلمة المرور -->
+  <div class="modal-backdrop" id="pwBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
       <header>
-        <h2 id="modalTitle">إضافة كابينة جديدة</h2>
-        <button class="close-x" id="closeModalBtn" aria-label="إغلاق">×</button>
+        <h2 id="pwTitle">تأكيد كلمة المرور</h2>
+        <button class="close-x" id="pwCloseBtn" aria-label="إغلاق">×</button>
+      </header>
+
+      <div class="body">
+        <div class="row">
+          <label for="pwInput">كلمة المرور</label>
+          <input id="pwInput" type="password" placeholder="••••••••" />
+          <div class="hint">هذه الخطوة مطلوبة لإدارة (إضافة/تصدير).</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <button class="btn" id="pwOkBtn" type="button">دخول</button>
+        <button class="btn secondary" id="pwCancelBtn" type="button">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal إضافة كابينة -->
+  <div class="modal-backdrop" id="addBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+      <header>
+        <h2 id="addTitle">إضافة كابينة جديدة</h2>
+        <button class="close-x" id="addCloseBtn" aria-label="إغلاق">×</button>
       </header>
 
       <div class="body">
         <div class="row">
           <label for="imgName">اسم الصورة (PNG)</label>
           <input id="imgName" type="text" placeholder="مثال: S036.png" />
-          <div class="hint">ضع الصورة داخل مجلد images/ بنفس الاسم بالضبط.</div>
+          <div class="hint">ضع الصورة داخل مجلد images/ بنفس الاسم.</div>
         </div>
 
         <div class="row">
           <label for="linkUrl">الرابط</label>
           <input id="linkUrl" type="url" placeholder="https://..." />
-          <div class="hint">سيتم فتح الرابط عند الضغط على الصورة أو الاسم.</div>
         </div>
 
         <div class="msg" id="savedMsg">تم الحفظ ✅</div>
@@ -450,12 +465,19 @@
 
       <div class="footer">
         <button class="btn" id="saveBtn" type="button">حفظ</button>
-        <button class="btn secondary" id="cancelBtn" type="button">إلغاء</button>
+        <button class="btn secondary" id="addCancelBtn" type="button">إلغاء</button>
       </div>
     </div>
   </div>
 
   <script>
+    // =========================
+    // ✅ كلمة المرور (واجهة فقط)
+    // =========================
+    const ADMIN_PASSWORD = "smou@2026";
+    let pendingAction = null; // "add" | "export"
+    let adminUnlocked = false; // يبقى مفتوح داخل نفس الجلسة فقط
+
     // =========================
     // ✅ البيانات الأساسية (ثابتة)
     // =========================
@@ -501,30 +523,47 @@
     // ✅ إضافات المستخدم تحفظ في المتصفح
     // =========================
     const STORAGE_KEY = "silverCabin_customItems_v1";
-
     function loadCustomItems(){
       try{
         const raw = localStorage.getItem(STORAGE_KEY);
         if(!raw) return [];
         const parsed = JSON.parse(raw);
         return Array.isArray(parsed) ? parsed : [];
-      }catch(e){
-        return [];
-      }
+      }catch(e){ return []; }
     }
-
     function saveCustomItems(list){
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
-
     function normalizeCodeFromImg(imgName){
-      // S036.png -> S036
       const m = String(imgName).trim().match(/^(S\d{3,})/i);
       return m ? m[1].toUpperCase() : "";
     }
-
     function isValidUrl(url){
       try{ new URL(url); return true; }catch(e){ return false; }
+    }
+    function mergeItems(base, custom){
+      const map = new Map();
+      [...base, ...custom].forEach(it => {
+        if(!it || !it.code) return;
+        map.set(it.code.toUpperCase(), {
+          code: it.code.toUpperCase(),
+          img: it.img,
+          href: it.href
+        });
+      });
+      const arr = [...map.values()];
+      arr.sort((a,b) => {
+        const na = parseInt((a.code.match(/\d+/)||["0"])[0],10);
+        const nb = parseInt((b.code.match(/\d+/)||["0"])[0],10);
+        if (na !== nb) return na - nb;
+        return a.code.localeCompare(b.code);
+      });
+      return arr;
+    }
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+      }[c]));
     }
 
     // =========================
@@ -536,9 +575,17 @@
     const addBtn = document.getElementById("addBtn");
     const exportBtn = document.getElementById("exportBtn");
 
-    const modalBackdrop = document.getElementById("modalBackdrop");
-    const closeModalBtn = document.getElementById("closeModalBtn");
-    const cancelBtn = document.getElementById("cancelBtn");
+    // password modal
+    const pwBackdrop = document.getElementById("pwBackdrop");
+    const pwCloseBtn = document.getElementById("pwCloseBtn");
+    const pwCancelBtn = document.getElementById("pwCancelBtn");
+    const pwOkBtn = document.getElementById("pwOkBtn");
+    const pwInput = document.getElementById("pwInput");
+
+    // add modal
+    const addBackdrop = document.getElementById("addBackdrop");
+    const addCloseBtn = document.getElementById("addCloseBtn");
+    const addCancelBtn = document.getElementById("addCancelBtn");
     const saveBtn = document.getElementById("saveBtn");
     const imgNameInput = document.getElementById("imgName");
     const linkUrlInput = document.getElementById("linkUrl");
@@ -546,41 +593,13 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // =========================
-    // البيانات النهائية (أساسي + إضافات)
-    // =========================
+    // data
     let customItems = loadCustomItems();
     let items = mergeItems(baseItems, customItems);
 
-    function mergeItems(base, custom){
-      // دمج مع منع التكرار حسب code
-      const map = new Map();
-      [...base, ...custom].forEach(it => {
-        if(!it || !it.code) return;
-        map.set(it.code.toUpperCase(), {
-          code: it.code.toUpperCase(),
-          img: it.img,
-          href: it.href
-        });
-      });
-
-      // ترتيب S001..S999 ثم أي شيء إضافي
-      const arr = [...map.values()];
-      arr.sort((a,b) => {
-        const na = parseInt((a.code.match(/\d+/)||["0"])[0],10);
-        const nb = parseInt((b.code.match(/\d+/)||["0"])[0],10);
-        if (na !== nb) return na - nb;
-        return a.code.localeCompare(b.code);
-      });
-      return arr;
-    }
-
-    function escapeHtml(s){
-      return String(s).replace(/[&<>"']/g, (c) => ({
-        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
-      }[c]));
-    }
-
+    // =========================
+    // Render
+    // =========================
     function render(list){
       grid.innerHTML = "";
       list.forEach((it) => {
@@ -595,8 +614,6 @@
         });
 
         const safeCode = escapeHtml(it.code);
-
-        // زر حذف يظهر فقط لو العنصر من customItems
         const isCustom = customItems.some(x => x.code.toUpperCase() === it.code.toUpperCase());
 
         card.innerHTML = `
@@ -622,7 +639,7 @@
         grid.appendChild(card);
       });
 
-      // ربط أزرار الحذف
+      // delete handlers (still admin-protected? no: you didn’t ask. we can protect too if you want)
       grid.querySelectorAll("button.del").forEach(btn => {
         btn.addEventListener("click", (e) => {
           e.stopPropagation();
@@ -644,90 +661,136 @@
     function filter(){
       const q = (searchInput.value || "").trim().toLowerCase();
       if(!q){ render(items); return; }
-      const filtered = items.filter(x => x.code.toLowerCase().includes(q));
-      render(filtered);
+      render(items.filter(x => x.code.toLowerCase().includes(q)));
     }
     searchInput.addEventListener("input", filter);
 
     // =========================
-    // Modal تحكم
+    // Password modal helpers
     // =========================
-    function openModal(){
+    function openPwModal(action){
+      pendingAction = action; // "add" or "export"
+      pwInput.value = "";
+      pwBackdrop.style.display = "flex";
+      pwBackdrop.setAttribute("aria-hidden","false");
+      setTimeout(()=>pwInput.focus(), 50);
+    }
+    function closePwModal(){
+      pwBackdrop.style.display = "none";
+      pwBackdrop.setAttribute("aria-hidden","true");
+      pendingAction = null;
+    }
+
+    function doAfterUnlock(){
+      if(pendingAction === "add") openAddModal();
+      else if(pendingAction === "export") exportJson();
+      closePwModal();
+    }
+
+    pwOkBtn.addEventListener("click", () => {
+      const val = String(pwInput.value || "");
+      if(val !== ADMIN_PASSWORD){
+        alert("كلمة المرور غير صحيحة");
+        pwInput.focus();
+        return;
+      }
+      adminUnlocked = true;
+      doAfterUnlock();
+    });
+
+    pwCancelBtn.addEventListener("click", closePwModal);
+    pwCloseBtn.addEventListener("click", closePwModal);
+    pwBackdrop.addEventListener("click", (e) => {
+      if(e.target === pwBackdrop) closePwModal();
+    });
+    pwInput.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") pwOkBtn.click();
+      if(e.key === "Escape") closePwModal();
+    });
+
+    // =========================
+    // Add modal helpers
+    // =========================
+    function openAddModal(){
       savedMsg.style.display = "none";
       imgNameInput.value = "";
       linkUrlInput.value = "";
-      modalBackdrop.style.display = "flex";
-      modalBackdrop.setAttribute("aria-hidden","false");
+      addBackdrop.style.display = "flex";
+      addBackdrop.setAttribute("aria-hidden","false");
       setTimeout(()=>imgNameInput.focus(), 50);
     }
-    function closeModal(){
-      modalBackdrop.style.display = "none";
-      modalBackdrop.setAttribute("aria-hidden","true");
+    function closeAddModal(){
+      addBackdrop.style.display = "none";
+      addBackdrop.setAttribute("aria-hidden","true");
     }
-
-    addBtn.addEventListener("click", openModal);
-    closeModalBtn.addEventListener("click", closeModal);
-    cancelBtn.addEventListener("click", closeModal);
-    modalBackdrop.addEventListener("click", (e) => {
-      if(e.target === modalBackdrop) closeModal();
-    });
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape") closeModal();
+    addCloseBtn.addEventListener("click", closeAddModal);
+    addCancelBtn.addEventListener("click", closeAddModal);
+    addBackdrop.addEventListener("click", (e) => {
+      if(e.target === addBackdrop) closeAddModal();
     });
 
     // =========================
-    // حفظ إضافة
+    // Buttons (protected)
+    // =========================
+    addBtn.addEventListener("click", () => {
+      if(adminUnlocked) openAddModal();
+      else openPwModal("add");
+    });
+
+    exportBtn.addEventListener("click", () => {
+      if(adminUnlocked) exportJson();
+      else openPwModal("export");
+    });
+
+    // =========================
+    // Save new item
     // =========================
     saveBtn.addEventListener("click", () => {
       const img = String(imgNameInput.value || "").trim();
       const href = String(linkUrlInput.value || "").trim();
 
       if(!img || !/\.png$/i.test(img)){
-        alert("من فضلك اكتب اسم الصورة بصيغة PNG مثل: S036.png");
+        alert("اكتب اسم الصورة بصيغة PNG مثل: S036.png");
         return;
       }
       if(!href || !isValidUrl(href)){
-        alert("من فضلك ضع رابط صحيح يبدأ بـ https://");
+        alert("ضع رابط صحيح يبدأ بـ https://");
         return;
       }
-
       const code = normalizeCodeFromImg(img);
       if(!code){
         alert("اسم الصورة يجب أن يبدأ بـ S ثم أرقام مثل: S036.png");
         return;
       }
 
-      // إضافة/تحديث داخل customItems
-      const existsIdx = customItems.findIndex(x => x.code.toUpperCase() === code.toUpperCase());
+      const idx = customItems.findIndex(x => x.code.toUpperCase() === code.toUpperCase());
       const newItem = { code, img, href };
-
-      if(existsIdx >= 0) customItems[existsIdx] = newItem;
+      if(idx >= 0) customItems[idx] = newItem;
       else customItems.push(newItem);
 
       saveCustomItems(customItems);
       items = mergeItems(baseItems, customItems);
 
       savedMsg.style.display = "block";
-      setTimeout(() => { closeModal(); filter(); }, 500);
+      setTimeout(() => { closeAddModal(); filter(); }, 450);
     });
 
     // =========================
-    // تصدير JSON
+    // Export JSON
     // =========================
-    exportBtn.addEventListener("click", async () => {
+    async function exportJson(){
       const payload = JSON.stringify(items, null, 2);
       try{
         await navigator.clipboard.writeText(payload);
-        alert("تم نسخ JSON ✅\nالصقه في ملف أو أرسله لي لتثبيته على السيرفر.");
+        alert("تم نسخ JSON ✅");
       }catch(e){
-        // fallback
         const w = window.open("", "_blank");
         w.document.write("<pre>"+escapeHtml(payload)+"</pre>");
         w.document.close();
       }
-    });
+    }
 
-    // أول تحميل
+    // first load
     render(items);
   </script>
 </body>
