@@ -3,168 +3,444 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>الكابئن الفضي - Silver Cabin | SMOU GROUP</title>
+  <title>الكبائن الفضية | Silver Cabin — SMOU GROUP</title>
+  <meta name="description" content="معرض الكبائن الفضية — SMOU GROUP" />
 
   <style>
     :root{
-      --brand:#1c6670;
-      --bg:#f5f7fa;
+      --blue:#0b5fa8;
+      --blue2:#0a4f8a;
+      --bg:#f4f8ff;
       --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --shadow:0 8px 20px rgba(0,0,0,.08);
-      --radius:16px;
+      --text:#0b1b2b;
+      --muted:#6b7c93;
+      --shadow: 0 10px 30px rgba(11,95,168,.12);
+      --radius: 18px;
+      --gap: 18px;
+      --border: 1px solid rgba(11,95,168,.12);
     }
-    *{box-sizing:border-box}
 
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family:Tahoma, Arial, sans-serif;
-      background:var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Kufi Arabic", "Noto Sans Arabic", sans-serif;
       color:var(--text);
-    }
-    .wrap{
-      max-width:1000px;
-      margin:auto;
-      padding:20px;
+      background:
+        radial-gradient(900px 300px at 15% 0%, rgba(11,95,168,.18), transparent 60%),
+        radial-gradient(900px 300px at 85% 0%, rgba(11,95,168,.12), transparent 60%),
+        var(--bg);
     }
 
-    header{
-      background:var(--card);
-      padding:15px 16px;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+    .topbar{
+      position:sticky; top:0; z-index:10;
+      background: linear-gradient(90deg, var(--blue2), var(--blue));
+      color:#fff;
+      box-shadow: 0 8px 18px rgba(0,0,0,.12);
+    }
+
+    .topbar-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:14px 16px;
       display:flex;
       align-items:center;
       gap:14px;
     }
-    header img{
-      height:46px;
-      width:auto;
-      display:block;
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 220px;
     }
-    header h1{
-      margin:0;
-      font-size:18px;
-      line-height:1.2;
+
+    .brand img{
+      width:44px; height:44px;
+      border-radius:50%;
+      background:#fff;
+      padding:6px;
+      object-fit:contain;
+      box-shadow: 0 8px 16px rgba(0,0,0,.18);
     }
-    header .sub{
-      margin-top:4px;
+
+    .brand .titles{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+    .brand .titles .h{
+      font-size:16px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .brand .titles .s{
       font-size:12px;
-      color:var(--muted);
+      opacity:.9;
     }
+
+    .controls{
+      margin-inline-start:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .search{
+      position:relative;
+      min-width: 240px;
+      max-width: 360px;
+      flex: 1 1 260px;
+    }
+    .search input{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border: 1px solid rgba(255,255,255,.25);
+      outline:none;
+      background: rgba(255,255,255,.15);
+      color:#fff;
+      backdrop-filter: blur(6px);
+    }
+    .search input::placeholder{color: rgba(255,255,255,.8)}
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:700;
+      background:#fff;
+      color:var(--blue2);
+      box-shadow: 0 10px 18px rgba(0,0,0,.12);
+      transition: transform .15s ease, box-shadow .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 22px rgba(0,0,0,.14); }
+    .btn:active{ transform: translateY(0px); }
 
     main{
-      margin-top:18px;
-      background:var(--card);
-      padding:18px;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+      max-width:1200px;
+      margin: 22px auto 30px;
+      padding: 0 16px;
     }
 
-    /* شبكة الصور */
+    .hero{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin: 14px 0 18px;
+    }
+
+    .hero .title{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .hero .title h1{
+      margin:0;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--blue2);
+    }
+
+    .hero .title p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .count{
+      color: var(--blue2);
+      background: rgba(11,95,168,.08);
+      border: var(--border);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 13px;
+      white-space:nowrap;
+    }
+
     .grid{
       display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap:18px;
-    }
-    @media (max-width: 650px){
-      .grid{ grid-template-columns: 1fr; }
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--gap);
     }
 
-    /* كارت */
+    @media (max-width: 1050px){
+      .grid{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+    }
+    @media (max-width: 820px){
+      .grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .brand{ min-width:auto; }
+    }
+    @media (max-width: 560px){
+      .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .search{ min-width: 180px; }
+    }
+
     .card{
-      text-align:center;
+      background: var(--card);
+      border-radius: var(--radius);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      display:flex;
+      flex-direction:column;
+      min-height: 260px;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(11,95,168,.18);
+      border-color: rgba(11,95,168,.24);
     }
 
-    /* توحيد ارتفاع الصور حتى لو المقاسات مختلفة */
     .thumb{
-      width:100%;
-      max-width:320px;
-      margin:0 auto;
-      border-radius:12px;
+      position:relative;
+      aspect-ratio: 3/4;
+      background: linear-gradient(180deg, rgba(11,95,168,.06), rgba(11,95,168,.02));
+      display:flex;
+      align-items:center;
+      justify-content:center;
       overflow:hidden;
-      box-shadow:0 6px 15px rgba(0,0,0,.08);
-      background:#e9eef3;
     }
+
     .thumb img{
       width:100%;
-      height:210px;          /* نفس الارتفاع لكل الصور */
-      object-fit:cover;      /* قصّ ذكي */
+      height:100%;
+      object-fit: cover;
       display:block;
-      transition:transform .2s ease;
+      transform: scale(1.02);
+      transition: transform .2s ease;
     }
-    .thumb img:hover{
-      transform:scale(1.03);
+    .card:hover .thumb img{ transform: scale(1.05); }
+
+    .badge{
+      position:absolute;
+      top:10px; inset-inline-start:10px;
+      background: rgba(11,95,168,.92);
+      color:#fff;
+      padding:6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing:.4px;
+      box-shadow: 0 10px 18px rgba(0,0,0,.14);
     }
 
-    .card a{
+    .content{
+      padding: 12px 12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .code{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 0;
+    }
+    .code a{
+      color: var(--blue2);
+      font-weight: 900;
       text-decoration:none;
-      color:var(--brand);
-      font-weight:700;
+      font-size: 16px;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
-    .code-link{
-      display:inline-block;
-      margin-top:10px;
-      font-size:15px;
-      letter-spacing:.3px;
+    .code a:hover{ text-decoration: underline; }
+    .code span{
+      color: var(--muted);
+      font-size: 12px;
     }
+
+    .open{
+      margin-inline-start:auto;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: var(--border);
+      background: rgba(11,95,168,.06);
+      color: var(--blue2);
+      font-weight: 900;
+      text-decoration:none;
+      transition: background .15s ease, transform .15s ease;
+      white-space:nowrap;
+    }
+    .open:hover{ background: rgba(11,95,168,.10); transform: translateY(-1px); }
 
     footer{
-      text-align:center;
-      margin-top:18px;
-      font-size:12px;
-      color:var(--muted);
+      max-width:1200px;
+      margin: 10px auto 24px;
+      padding: 0 16px;
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
     }
+    footer a{ color: var(--blue2); text-decoration:none; font-weight:800; }
+    footer a:hover{ text-decoration:underline; }
+
+    .hidden{ display:none !important; }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-
-    <header>
-      <!-- ضع اللوجو باسم logo.png في نفس مجلد الصفحة -->
-      <img src="logo.png" alt="SMOU GROUP Logo" onerror="this.style.display='none'">
-      <div>
-        <h1>الكابئن الفضي - Silver Cabin</h1>
-        <div class="sub">SMOU GROUP</div>
-      </div>
-    </header>
-
-    <main>
-      <div class="grid">
-
-        <!-- الكابينة الأولى: CMPC-004 -->
-        <div class="card">
-          <a href="http://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz" target="_blank" rel="noopener">
-            <div class="thumb">
-              <img src="8-1.png" alt="CMPC-004">
-            </div>
-          </a>
-          <a class="code-link" href="http://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz" target="_blank" rel="noopener">
-            CMPC-004
-          </a>
+  <!-- ✅ عدّل مسار اللوجو هنا -->
+  <!-- ضع ملف اللوجو داخل نفس المجلد باسم: logo.png  أو عدّل المسار -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="logo.png" alt="SMOU GROUP Logo" onerror="this.style.display='none'">
+        <div class="titles">
+          <div class="h">الكبائن الفضية — Silver Cabin</div>
+          <div class="s">SMOU GROUP</div>
         </div>
-
-        <!-- الكابينة الثانية: CPMC-003 -->
-        <div class="card">
-          <a href="http://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgx" target="_blank" rel="noopener">
-            <div class="thumb">
-              <img src="8-2.png" alt="CPMC-003">
-            </div>
-          </a>
-          <a class="code-link" href="http://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgx" target="_blank" rel="noopener">
-            CPMC-003
-          </a>
-        </div>
-
       </div>
-    </main>
 
-    <footer>
-      © SMOU GROUP — silver.smougroup.com
-    </footer>
+      <div class="controls">
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="ابحث بالرقم… مثال: S005" autocomplete="off" />
+        </div>
+        <button class="btn" id="openAllBtn" type="button" title="فتح كل الروابط في تبويبات جديدة">فتح الكل</button>
+      </div>
+    </div>
+  </header>
 
-  </div>
+  <main>
+    <section class="hero">
+      <div class="title">
+        <h1>معرض الكبائن الفضية</h1>
+        <p>اضغط على الصورة أو اسم الكابينة لفتح رابط العرض.</p>
+      </div>
+      <div class="count" id="countBadge">—</div>
+    </section>
+
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> SMOU GROUP — silver.smougroup.com</div>
+    <div>
+      ملاحظة: ضع صور الكبائن داخل مجلد <b>images/</b> بأسماء <b>S001.jpg</b> … <b>S021.jpg</b>
+    </div>
+  </footer>
+
+  <script>
+    // =========================
+    // ✅ 1) ضع الصور داخل: images/
+    //    مثال: images/S001.jpg ... images/S021.jpg
+    //
+    // ✅ 2) عدّل الروابط لكل كابينة داخل القائمة بالأسفل:
+    //    ضع رابط 3vfang لكل S001..S021
+    // =========================
+
+    const items = [
+      // مثال جاهز (غيّره حسب روابطك الحقيقية)
+      { code: "S001", href: "http://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz" },
+      { code: "S002", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S002" },
+      { code: "S003", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S003" },
+      { code: "S004", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S004" },
+      { code: "S005", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S005" },
+      { code: "S006", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S006" },
+      { code: "S007", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S007" },
+      { code: "S008", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S008" },
+      { code: "S009", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S009" },
+      { code: "S010", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S010" },
+      { code: "S011", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S011" },
+      { code: "S012", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S012" },
+      { code: "S013", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S013" },
+      { code: "S014", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S014" },
+      { code: "S015", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S015" },
+      { code: "S016", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S016" },
+      { code: "S017", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S017" },
+      { code: "S018", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S018" },
+      { code: "S019", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S019" },
+      { code: "S020", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S020" },
+      { code: "S021", href: "http://my.3vfang.com/p/share/content.php?m=PUT_YOUR_LINK_HERE_S021" },
+    ];
+
+    // 🔧 غيّر امتداد الصور لو PNG بدل JPG
+    const IMG_EXT = "jpg"; // "png" أو "webp" حسب ملفاتك
+
+    const grid = document.getElementById("grid");
+    const searchInput = document.getElementById("searchInput");
+    const countBadge = document.getElementById("countBadge");
+    const openAllBtn = document.getElementById("openAllBtn");
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function render(list){
+      grid.innerHTML = "";
+
+      list.forEach((it) => {
+        const imgSrc = `images/${it.code}.${IMG_EXT}`;
+
+        const card = document.createElement("article");
+        card.className = "card";
+        card.setAttribute("data-code", it.code.toLowerCase());
+
+        // يجعل الضغط على الكارت كله يفتح الرابط
+        card.addEventListener("click", (e) => {
+          // لو ضغط على رابط نفسه ما نكرر
+          if (e.target.closest("a")) return;
+          window.open(it.href, "_blank", "noopener,noreferrer");
+        });
+
+        card.innerHTML = `
+          <div class="thumb" role="img" aria-label="${it.code}">
+            <span class="badge">${it.code}</span>
+            <img src="${imgSrc}" alt="${it.code}" loading="lazy"
+                 onerror="this.src='data:image/svg+xml;utf8,<?xml version=\\'1.0\\' encoding=\\'UTF-8\\'?><svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'600\\' height=\\'800\\'><rect width=\\'100%\\' height=\\'100%\\' fill=\\'%23eaf2ff\\'/><text x=\\'50%\\' y=\\'50%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' fill=\\'%230b5fa8\\' font-family=\\'Arial\\' font-size=\\'22\\'>Image not found: ${it.code}</text></svg>';">
+          </div>
+
+          <div class="content">
+            <div class="code">
+              <a href="${it.href}" target="_blank" rel="noopener noreferrer" aria-label="فتح ${it.code}">
+                ${it.code}
+              </a>
+              <span>اضغط للعرض</span>
+            </div>
+            <a class="open" href="${it.href}" target="_blank" rel="noopener noreferrer">فتح</a>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      countBadge.textContent = `المعروض: ${list.length} / ${items.length}`;
+    }
+
+    function filter(){
+      const q = (searchInput.value || "").trim().toLowerCase();
+      if(!q){
+        render(items);
+        return;
+      }
+      const filtered = items.filter(x => x.code.toLowerCase().includes(q));
+      render(filtered);
+    }
+
+    searchInput.addEventListener("input", filter);
+
+    openAllBtn.addEventListener("click", () => {
+      // فتح الروابط دفعة واحدة قد يمنعه المتصفح إذا لم يكن مسموحاً
+      items.forEach((it, idx) => {
+        setTimeout(() => window.open(it.href, "_blank", "noopener,noreferrer"), idx * 120);
+      });
+    });
+
+    // أول تحميل
+    render(items);
+  </script>
 </body>
 </html>
