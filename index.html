@@ -15,10 +15,9 @@
       --card:#ffffff;
       --text:#0b1b2b;
       --muted:#7b8aa3;
-      --shadow: 0 14px 40px rgba(0,0,0,.14);
       --shadow2: 0 10px 25px rgba(11,95,168,.18);
       --radius: 18px;
-      --border: 1px solid rgba(255,255,255,.12);
+      --border: 1px solid rgba(255,255,255,.16);
     }
 
     *{box-sizing:border-box}
@@ -29,21 +28,40 @@
       color: var(--text);
     }
 
-    /* ===== Top (Hero) like your sample ===== */
+    /* ===== HERO with background image (back) ===== */
     .hero{
+      position:relative;
+      color:#fff;
+      padding: 22px 0 26px;
+      min-height: 58vh;
+      display:flex;
+      align-items:stretch;
+      overflow:hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      background:
+        url("back.jpg") center center / cover no-repeat;
+    }
+
+    /* overlays to make text readable */
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
       background:
         radial-gradient(900px 360px at 20% 0%, rgba(11,95,168,.45), transparent 60%),
         radial-gradient(800px 320px at 80% 20%, rgba(11,95,168,.35), transparent 60%),
-        linear-gradient(180deg, var(--navy), var(--navy2));
-      color:#fff;
-      padding: 22px 0 26px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+        linear-gradient(180deg, rgba(7,28,51,.72), rgba(10,42,75,.78));
+      pointer-events:none;
     }
 
     .container{
+      position:relative; /* above overlay */
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 16px;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
 
     .topbar{
@@ -62,19 +80,20 @@
     }
 
     .brand .logo{
-      width:48px;height:48px;
-      border-radius: 14px;
+      width:52px;height:52px;
+      border-radius: 16px;
       background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.18);
+      border: var(--border);
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
       box-shadow: 0 12px 22px rgba(0,0,0,.18);
+      backdrop-filter: blur(6px);
     }
     .brand .logo img{
-      width: 80%;
-      height: 80%;
+      width: 82%;
+      height: 82%;
       object-fit: contain;
       filter: drop-shadow(0 6px 10px rgba(0,0,0,.22));
     }
@@ -85,16 +104,13 @@
       line-height:1.15;
     }
     .brand .text .title{
-      font-weight: 900;
+      font-weight: 1000;
       font-size: 18px;
       letter-spacing: .2px;
     }
     .brand .text .sub{
       font-size: 12px;
       opacity: .92;
-      display:flex;
-      align-items:center;
-      gap:8px;
     }
 
     .pill{
@@ -107,18 +123,18 @@
     }
 
     .search{
-      width: min(380px, 90vw);
+      width: min(380px, 92vw);
       position:relative;
     }
     .search input{
       width:100%;
-      padding: 10px 12px;
+      padding: 11px 13px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.22);
       background: rgba(255,255,255,.10);
       color:#fff;
       outline:none;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
     .search input::placeholder{color: rgba(255,255,255,.80)}
 
@@ -127,9 +143,10 @@
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.10);
-      font-weight: 900;
+      font-weight: 1000;
       font-size: 12px;
       white-space:nowrap;
+      backdrop-filter: blur(10px);
     }
 
     .heroBody{
@@ -137,27 +154,30 @@
       align-items:flex-end;
       justify-content:space-between;
       gap:16px;
-      margin-top: 18px;
       flex-wrap:wrap;
+      margin-top:auto;
+      padding-bottom: 8px;
     }
 
     .heroBody h1{
       margin:0;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 1000;
       letter-spacing: .3px;
     }
     .heroBody p{
-      margin: 8px 0 0;
-      color: rgba(255,255,255,.86);
+      margin: 10px 0 0;
+      color: rgba(255,255,255,.88);
       font-size: 14px;
-      max-width: 720px;
-      line-height: 1.6;
+      max-width: 760px;
+      line-height: 1.7;
     }
 
     /* ===== Slider Section ===== */
-    .section{
-      margin: 18px 0 34px;
+    main{
+      max-width: 1280px;
+      margin: 18px auto 36px;
+      padding: 0 16px;
     }
 
     .sliderHeader{
@@ -183,7 +203,7 @@
       cursor:pointer;
       padding: 10px 12px;
       border-radius: 12px;
-      font-weight: 900;
+      font-weight: 1000;
       background: #fff;
       color: var(--navy2);
       box-shadow: var(--shadow2);
@@ -206,7 +226,6 @@
       overflow:hidden;
     }
 
-    /* horizontal scroll */
     .track{
       display:flex;
       gap: 16px;
@@ -220,7 +239,10 @@
       background: rgba(11,95,168,.25);
       border-radius: 999px;
     }
-    .track::-webkit-scrollbar-track{ background: rgba(0,0,0,.05); border-radius: 999px; }
+    .track::-webkit-scrollbar-track{
+      background: rgba(0,0,0,.05);
+      border-radius: 999px;
+    }
 
     .card{
       flex: 0 0 auto;
@@ -289,7 +311,7 @@
     }
     .open{
       text-decoration:none;
-      font-weight: 900;
+      font-weight: 1000;
       background: var(--blue);
       color:#fff;
       padding: 8px 12px;
@@ -298,23 +320,23 @@
     }
     .open:hover{ background: var(--blue2); }
 
-    /* Small screens */
-    @media (max-width: 520px){
-      .heroBody h1{ font-size: 22px; }
-      .card{ width: 200px; }
-      .search{ width: 92vw; }
-    }
-
     footer{
       color: #6c7c96;
       font-size: 12px;
       padding: 16px 0 24px;
       text-align:center;
     }
+
+    @media (max-width: 520px){
+      .hero{ min-height: 52vh; }
+      .heroBody h1{ font-size: 22px; }
+      .card{ width: 200px; }
+    }
   </style>
 </head>
 
 <body>
+  <!-- HERO -->
   <section class="hero">
     <div class="container">
       <div class="topbar">
@@ -345,7 +367,8 @@
     </div>
   </section>
 
-  <main class="container section">
+  <!-- SLIDER -->
+  <main>
     <div class="sliderHeader">
       <div class="h">الكبائن (S001 → S035)</div>
       <div class="controls">
@@ -362,7 +385,8 @@
   </main>
 
   <script>
-    // نفس بياناتك
+    // لو صورتك اسمها back.png بدل back.jpg -> غيره هنا أو في CSS فوق
+    // البيانات (كما هي)
     const items = [
       {img:"S001.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz"},
       {img:"S002.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgy"},
@@ -421,8 +445,7 @@
         card.innerHTML = `
           <div class="thumb">
             <span class="codeTag">${code}</span>
-            <img src="${it.img}" alt="${code}"
-              loading="lazy"
+            <img src="${it.img}" alt="${code}" loading="lazy"
               onerror="this.outerHTML='<div style=\\'padding:16px;color:#0b5fa8;font-weight:900\\'>Image not found: ${code}</div>';">
           </div>
           <div class="meta">
@@ -442,9 +465,8 @@
     function filter(){
       const q = (searchInput.value || "").trim().toLowerCase();
       if(!q){ render(items); return; }
-      render(items.filter(x => x.img.toLowerCase().includes(q) || x.href.toLowerCase().includes(q)));
+      render(items.filter(x => x.img.toLowerCase().includes(q)));
     }
-
     searchInput.addEventListener("input", filter);
 
     // Slider buttons
@@ -456,7 +478,7 @@
       const step = card ? (card.getBoundingClientRect().width + 16) : 260;
       track.scrollBy({ left: dir * step, behavior: "smooth" });
     }
-    // RTL: "left" button should move track visually to the left, so we invert
+    // RTL: الزر اليسار يحرك بصرياً لليسار
     leftBtn.addEventListener("click", ()=> scrollByCards(1));
     rightBtn.addEventListener("click", ()=> scrollByCards(-1));
 
@@ -483,7 +505,6 @@
     });
     track.style.cursor="grab";
 
-    // initial
     render(items);
   </script>
 </body>
