@@ -1,152 +1,490 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>الكبائن الفضية | Silver Cabin — SMOU GROUP</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>الكبائن الفضية | Silver Cabin — SMOU GROUP</title>
 
-<style>
-:root{
---blue:#0b5fa8;
---blue2:#094a85;
---bg:#f2f7ff;
---card:#ffffff;
---shadow:0 10px 30px rgba(0,0,0,.08);
---radius:18px;
-}
-body{margin:0;font-family:system-ui;background:var(--bg);}
-header{
-background:linear-gradient(90deg,var(--blue2),var(--blue));
-color:#fff;padding:18px 25px;
-display:flex;justify-content:space-between;align-items:center;
-}
-header h1{margin:0;font-size:18px}
-main{max-width:1300px;margin:40px auto;padding:0 20px}
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-gap:25px;
-}
-.card{
-background:var(--card);
-border-radius:var(--radius);
-box-shadow:var(--shadow);
-overflow:hidden;
-transition:.25s;
-cursor:pointer;
-}
-.card:hover{transform:translateY(-6px)}
-.thumb{
-aspect-ratio:3/4;
-background:#e9f1ff;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-}
-.thumb img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-.code{
-position:absolute;
-top:10px;
-left:10px;
-background:var(--blue);
-color:#fff;
-padding:5px 10px;
-border-radius:20px;
-font-size:12px;
-font-weight:bold;
-}
-.bottom{
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-.open{
-background:var(--blue);
-color:#fff;
-padding:7px 14px;
-border-radius:10px;
-text-decoration:none;
-font-size:13px;
-}
-.open:hover{background:var(--blue2)}
-</style>
+  <style>
+    :root{
+      --navy:#071c33;
+      --navy2:#0a2a4b;
+      --blue:#0b5fa8;
+      --blue2:#0a4f8a;
+      --bg:#f3f7ff;
+      --card:#ffffff;
+      --text:#0b1b2b;
+      --muted:#7b8aa3;
+      --shadow: 0 14px 40px rgba(0,0,0,.14);
+      --shadow2: 0 10px 25px rgba(11,95,168,.18);
+      --radius: 18px;
+      --border: 1px solid rgba(255,255,255,.12);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Kufi Arabic", "Noto Sans Arabic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ===== Top (Hero) like your sample ===== */
+    .hero{
+      background:
+        radial-gradient(900px 360px at 20% 0%, rgba(11,95,168,.45), transparent 60%),
+        radial-gradient(800px 320px at 80% 20%, rgba(11,95,168,.35), transparent 60%),
+        linear-gradient(180deg, var(--navy), var(--navy2));
+      color:#fff;
+      padding: 22px 0 26px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+
+    .container{
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 280px;
+    }
+
+    .brand .logo{
+      width:48px;height:48px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      box-shadow: 0 12px 22px rgba(0,0,0,.18);
+    }
+    .brand .logo img{
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.22));
+    }
+
+    .brand .text{
+      display:flex;
+      flex-direction:column;
+      line-height:1.15;
+    }
+    .brand .text .title{
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+    .brand .text .sub{
+      font-size: 12px;
+      opacity: .92;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .pill{
+      margin-inline-start:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .search{
+      width: min(380px, 90vw);
+      position:relative;
+    }
+    .search input{
+      width:100%;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.10);
+      color:#fff;
+      outline:none;
+      backdrop-filter: blur(8px);
+    }
+    .search input::placeholder{color: rgba(255,255,255,.80)}
+
+    .badge{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      font-weight: 900;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+
+    .heroBody{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin-top: 18px;
+      flex-wrap:wrap;
+    }
+
+    .heroBody h1{
+      margin:0;
+      font-size: 28px;
+      font-weight: 1000;
+      letter-spacing: .3px;
+    }
+    .heroBody p{
+      margin: 8px 0 0;
+      color: rgba(255,255,255,.86);
+      font-size: 14px;
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    /* ===== Slider Section ===== */
+    .section{
+      margin: 18px 0 34px;
+    }
+
+    .sliderHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin: 18px 0 10px;
+    }
+    .sliderHeader .h{
+      font-weight: 1000;
+      color: var(--navy2);
+      font-size: 18px;
+    }
+    .controls{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 900;
+      background: #fff;
+      color: var(--navy2);
+      box-shadow: var(--shadow2);
+      transition: transform .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn.secondary{
+      background: rgba(7,28,51,.06);
+      color: var(--navy2);
+      box-shadow:none;
+      border: 1px solid rgba(7,28,51,.10);
+    }
+
+    .trackWrap{
+      position:relative;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(7,28,51,.06), rgba(7,28,51,.02));
+      padding: 14px;
+      border: 1px solid rgba(7,28,51,.08);
+      overflow:hidden;
+    }
+
+    /* horizontal scroll */
+    .track{
+      display:flex;
+      gap: 16px;
+      overflow:auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .track::-webkit-scrollbar{ height: 10px; }
+    .track::-webkit-scrollbar-thumb{
+      background: rgba(11,95,168,.25);
+      border-radius: 999px;
+    }
+    .track::-webkit-scrollbar-track{ background: rgba(0,0,0,.05); border-radius: 999px; }
+
+    .card{
+      flex: 0 0 auto;
+      width: 240px;
+      background: var(--card);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      scroll-snap-align: start;
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+      border: 1px solid rgba(7,28,51,.08);
+    }
+    .card:hover{ transform: translateY(-4px); box-shadow: 0 18px 36px rgba(11,95,168,.22); }
+
+    .thumb{
+      position:relative;
+      aspect-ratio: 3/4;
+      background: #e9f1ff;
+      overflow:hidden;
+    }
+    .thumb img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .2s ease;
+    }
+    .card:hover .thumb img{ transform: scale(1.06); }
+
+    .codeTag{
+      position:absolute;
+      top:10px; inset-inline-start:10px;
+      background: rgba(7,28,51,.92);
+      color:#fff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 1000;
+      box-shadow: 0 12px 22px rgba(0,0,0,.20);
+    }
+
+    .meta{
+      padding: 12px 12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .meta .left{
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+      min-width:0;
+    }
+    .meta .left b{
+      font-size: 16px;
+      color: var(--navy2);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .meta .left span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .open{
+      text-decoration:none;
+      font-weight: 900;
+      background: var(--blue);
+      color:#fff;
+      padding: 8px 12px;
+      border-radius: 12px;
+      white-space:nowrap;
+    }
+    .open:hover{ background: var(--blue2); }
+
+    /* Small screens */
+    @media (max-width: 520px){
+      .heroBody h1{ font-size: 22px; }
+      .card{ width: 200px; }
+      .search{ width: 92vw; }
+    }
+
+    footer{
+      color: #6c7c96;
+      font-size: 12px;
+      padding: 16px 0 24px;
+      text-align:center;
+    }
+  </style>
 </head>
 
 <body>
+  <section class="hero">
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo">
+            <img src="logo.png" alt="SMOU GROUP" onerror="this.parentElement.style.display='none'">
+          </div>
+          <div class="text">
+            <div class="title">الكبائن الفضية — Silver Cabin</div>
+            <div class="sub">SMOU GROUP</div>
+          </div>
+        </div>
 
-<header>
-<h1>الكبائن الفضية — Silver Cabin</h1>
-<strong>SMOU GROUP</strong>
-</header>
+        <div class="pill">
+          <div class="search">
+            <input id="searchInput" type="search" placeholder="ابحث بالكود... مثال S012" autocomplete="off">
+          </div>
+          <div class="badge" id="countBadge">—</div>
+        </div>
+      </div>
 
-<main>
-<div class="grid" id="grid"></div>
-</main>
+      <div class="heroBody">
+        <div>
+          <h1>معرض الكبائن الفضية</h1>
+          <p>اسحب يمين/يسار لتصفح الكبائن. اضغط على الصورة أو زر “فتح” للانتقال إلى رابط العرض.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-const items = [
-{img:"S001.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz"},
-{img:"S002.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgy"},
-{img:"S003.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg2"},
-{img:"S004.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYwOTg="},
-{img:"S005.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg5"},
-{img:"S006.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTkw"},
-{img:"S007.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYxMDE="},
-{img:"S008.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcy"},
-{img:"S009.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcz"},
-{img:"S010.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzQ="},
-{img:"S011.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzU="},
-{img:"S012.png",href:"https://www.720yun.com/t/c33jr0wmkk8#scene_id=26482653"},
-{img:"S013.png",href:"https://www.720yun.com/t/2d6jr5swua2#scene_id=26262322"},
-{img:"S014.png",href:"https://www.720yun.com/t/c77jr5swvO7#scene_id=26261605"},
-{img:"S015.png",href:"https://my.3vfang.com/p/pre/kr4693/26825/indexwx.html"},
-{img:"S016.png",href:"https://my.3vfang.com/p/pre/kr4693/26872/indexwx.html"},
-{img:"S017.png",href:"https://www.720yun.com/t/1ebjzgwyev4#scene_id=9454096"},
-{img:"S018.png",href:"https://www.720yun.com/t/4cejzOeOtu1#scene_id=9630448"},
-{img:"S019.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY1"},
-{img:"S020.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY2"},
-{img:"S021.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY5"},
-{img:"S022.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcy"},
-{img:"S023.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcz"},
-{img:"S024.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcw"},
-{img:"S025.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc0"},
-{img:"S026.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc2"},
-{img:"S027.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc3"},
-{img:"S028.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc4"},
-{img:"S029.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgx"},
-{img:"S030.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgy"},
-{img:"S031.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgw"},
-{img:"S032.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgz"},
-{img:"S033.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg1"},
-{img:"S034.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg2"},
-{img:"S035.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg0"}
-];
+  <main class="container section">
+    <div class="sliderHeader">
+      <div class="h">الكبائن (S001 → S035)</div>
+      <div class="controls">
+        <button class="btn secondary" id="leftBtn" type="button">◀</button>
+        <button class="btn secondary" id="rightBtn" type="button">▶</button>
+      </div>
+    </div>
 
-const grid=document.getElementById("grid");
+    <div class="trackWrap">
+      <div class="track" id="track"></div>
+    </div>
 
-items.forEach(it=>{
-const code=it.img.replace(".png","");
-const card=document.createElement("div");
-card.className="card";
-card.innerHTML=`
-<div class="thumb">
-<span class="code">${code}</span>
-<img src="${it.img}" alt="${code}"
-onerror="this.outerHTML='<div style=\\'color:#0b5fa8;font-weight:bold\\'>Image not found: ${code}</div>';">
-</div>
-<div class="bottom">
-<strong>${code}</strong>
-<a class="open" href="${it.href}" target="_blank">فتح</a>
-</div>`;
-grid.appendChild(card);
-});
-</script>
+    <footer>© <span id="year"></span> SMOU GROUP — silver.smougroup.com</footer>
+  </main>
 
+  <script>
+    // نفس بياناتك
+    const items = [
+      {img:"S001.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz"},
+      {img:"S002.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgy"},
+      {img:"S003.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg2"},
+      {img:"S004.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYwOTg="},
+      {img:"S005.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTg5"},
+      {img:"S006.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTkw"},
+      {img:"S007.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDYxMDE="},
+      {img:"S008.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcy"},
+      {img:"S009.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTM1MDcz"},
+      {img:"S010.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzQ="},
+      {img:"S011.png",href:"https://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NDU2MzU="},
+      {img:"S012.png",href:"https://www.720yun.com/t/c33jr0wmkk8#scene_id=26482653"},
+      {img:"S013.png",href:"https://www.720yun.com/t/2d6jr5swua2#scene_id=26262322"},
+      {img:"S014.png",href:"https://www.720yun.com/t/c77jr5swvO7#scene_id=26261605"},
+      {img:"S015.png",href:"https://my.3vfang.com/p/pre/kr4693/26825/indexwx.html"},
+      {img:"S016.png",href:"https://my.3vfang.com/p/pre/kr4693/26872/indexwx.html"},
+      {img:"S017.png",href:"https://www.720yun.com/t/1ebjzgwyev4#scene_id=9454096"},
+      {img:"S018.png",href:"https://www.720yun.com/t/4cejzOeOtu1#scene_id=9630448"},
+      {img:"S019.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY1"},
+      {img:"S020.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY2"},
+      {img:"S021.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1MzY5"},
+      {img:"S022.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcy"},
+      {img:"S023.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcz"},
+      {img:"S024.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzcw"},
+      {img:"S025.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc0"},
+      {img:"S026.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc2"},
+      {img:"S027.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc3"},
+      {img:"S028.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzc4"},
+      {img:"S029.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgx"},
+      {img:"S030.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgy"},
+      {img:"S031.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgw"},
+      {img:"S032.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzgz"},
+      {img:"S033.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg1"},
+      {img:"S034.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg2"},
+      {img:"S035.png",href:"https://s.3vfang.com/p/share/scontent.php?m=bGR5cy1pdGVtPTU1Mzg0"}
+    ];
+
+    const track = document.getElementById("track");
+    const searchInput = document.getElementById("searchInput");
+    const countBadge = document.getElementById("countBadge");
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function render(list){
+      track.innerHTML = "";
+      list.forEach(it=>{
+        const code = it.img.replace(".png","");
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.addEventListener("click", (e)=>{
+          if(e.target.closest("a")) return;
+          window.open(it.href, "_blank", "noopener,noreferrer");
+        });
+
+        card.innerHTML = `
+          <div class="thumb">
+            <span class="codeTag">${code}</span>
+            <img src="${it.img}" alt="${code}"
+              loading="lazy"
+              onerror="this.outerHTML='<div style=\\'padding:16px;color:#0b5fa8;font-weight:900\\'>Image not found: ${code}</div>';">
+          </div>
+          <div class="meta">
+            <div class="left">
+              <b>${code}</b>
+              <span>اضغط للعرض</span>
+            </div>
+            <a class="open" href="${it.href}" target="_blank" rel="noopener noreferrer">فتح</a>
+          </div>
+        `;
+        track.appendChild(card);
+      });
+
+      countBadge.textContent = `المعروض: ${list.length} / ${items.length}`;
+    }
+
+    function filter(){
+      const q = (searchInput.value || "").trim().toLowerCase();
+      if(!q){ render(items); return; }
+      render(items.filter(x => x.img.toLowerCase().includes(q) || x.href.toLowerCase().includes(q)));
+    }
+
+    searchInput.addEventListener("input", filter);
+
+    // Slider buttons
+    const leftBtn = document.getElementById("leftBtn");
+    const rightBtn = document.getElementById("rightBtn");
+
+    function scrollByCards(dir){
+      const card = track.querySelector(".card");
+      const step = card ? (card.getBoundingClientRect().width + 16) : 260;
+      track.scrollBy({ left: dir * step, behavior: "smooth" });
+    }
+    // RTL: "left" button should move track visually to the left, so we invert
+    leftBtn.addEventListener("click", ()=> scrollByCards(1));
+    rightBtn.addEventListener("click", ()=> scrollByCards(-1));
+
+    // Drag-to-scroll (mouse)
+    let isDown=false, startX=0, startScroll=0;
+    track.addEventListener("mousedown", (e)=>{
+      isDown=true;
+      track.style.cursor="grabbing";
+      startX=e.pageX;
+      startScroll=track.scrollLeft;
+    });
+    window.addEventListener("mouseup", ()=>{
+      isDown=false;
+      track.style.cursor="grab";
+    });
+    track.addEventListener("mouseleave", ()=>{
+      isDown=false;
+      track.style.cursor="grab";
+    });
+    track.addEventListener("mousemove", (e)=>{
+      if(!isDown) return;
+      const dx = e.pageX - startX;
+      track.scrollLeft = startScroll - dx;
+    });
+    track.style.cursor="grab";
+
+    // initial
+    render(items);
+  </script>
 </body>
 </html>
