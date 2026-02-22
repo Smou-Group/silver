@@ -28,7 +28,7 @@
       color: var(--text);
     }
 
-    /* ===== HERO with background image (back) ===== */
+    /* ===== HERO (Background image: back.*) ===== */
     .hero{
       position:relative;
       color:#fff;
@@ -38,23 +38,28 @@
       align-items:stretch;
       overflow:hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,.18);
+
+      /* يجرب أكثر من امتداد تلقائياً */
       background:
-        url("back.jpg") center center / cover no-repeat;
+        url("back.webp") center/cover no-repeat,
+        url("back.jpg")  center/cover no-repeat,
+        url("back.png")  center/cover no-repeat,
+        linear-gradient(180deg, var(--navy), var(--navy2));
     }
 
-    /* overlays to make text readable */
+    /* overlay لزيادة وضوح النص */
     .hero::before{
       content:"";
       position:absolute; inset:0;
       background:
-        radial-gradient(900px 360px at 20% 0%, rgba(11,95,168,.45), transparent 60%),
-        radial-gradient(800px 320px at 80% 20%, rgba(11,95,168,.35), transparent 60%),
-        linear-gradient(180deg, rgba(7,28,51,.72), rgba(10,42,75,.78));
+        radial-gradient(900px 360px at 20% 0%, rgba(11,95,168,.40), transparent 60%),
+        radial-gradient(800px 320px at 80% 20%, rgba(11,95,168,.28), transparent 60%),
+        linear-gradient(180deg, rgba(7,28,51,.62), rgba(10,42,75,.70));
       pointer-events:none;
     }
 
     .container{
-      position:relative; /* above overlay */
+      position:relative;
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 16px;
@@ -193,11 +198,7 @@
       color: var(--navy2);
       font-size: 18px;
     }
-    .controls{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
+    .controls{display:flex;gap:10px;align-items:center;}
     .btn{
       border:none;
       cursor:pointer;
@@ -336,7 +337,6 @@
 </head>
 
 <body>
-  <!-- HERO -->
   <section class="hero">
     <div class="container">
       <div class="topbar">
@@ -367,7 +367,6 @@
     </div>
   </section>
 
-  <!-- SLIDER -->
   <main>
     <div class="sliderHeader">
       <div class="h">الكبائن (S001 → S035)</div>
@@ -385,8 +384,6 @@
   </main>
 
   <script>
-    // لو صورتك اسمها back.png بدل back.jpg -> غيره هنا أو في CSS فوق
-    // البيانات (كما هي)
     const items = [
       {img:"S001.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgz"},
       {img:"S002.png",href:"https://my.3vfang.com/p/share/content.php?m=bGR5cy1pdGVtPTQyMTgy"},
@@ -469,7 +466,6 @@
     }
     searchInput.addEventListener("input", filter);
 
-    // Slider buttons
     const leftBtn = document.getElementById("leftBtn");
     const rightBtn = document.getElementById("rightBtn");
 
@@ -478,11 +474,9 @@
       const step = card ? (card.getBoundingClientRect().width + 16) : 260;
       track.scrollBy({ left: dir * step, behavior: "smooth" });
     }
-    // RTL: الزر اليسار يحرك بصرياً لليسار
     leftBtn.addEventListener("click", ()=> scrollByCards(1));
     rightBtn.addEventListener("click", ()=> scrollByCards(-1));
 
-    // Drag-to-scroll (mouse)
     let isDown=false, startX=0, startScroll=0;
     track.addEventListener("mousedown", (e)=>{
       isDown=true;
