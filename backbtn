@@ -39,7 +39,6 @@
       overflow:hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,.18);
 
-      /* يجرب أكثر من امتداد تلقائياً */
       background:
         url("back.webp") center/cover no-repeat,
         url("back.jpg")  center/cover no-repeat,
@@ -47,7 +46,6 @@
         linear-gradient(180deg, var(--navy), var(--navy2));
     }
 
-    /* overlay لزيادة وضوح النص */
     .hero::before{
       content:"";
       position:absolute; inset:0;
@@ -72,8 +70,8 @@
     /* ===== Back Arrow Button (Glass) ===== */
     .backBtn{
       position:absolute;
-      top:18px;
-      right:18px; /* RTL: أعلى يمين */
+      bottom:18px;        /* ✅ تحت يمين الهيرو */
+      right:18px;         /* RTL */
       width:46px;
       height:46px;
       border-radius:16px;
@@ -359,6 +357,9 @@
       .hero{ min-height: 52vh; }
       .heroBody h1{ font-size: 22px; }
       .card{ width: 200px; }
+
+      /* على الموبايل نزود مسافة بسيطة */
+      .backBtn{ bottom:14px; right:14px; }
     }
   </style>
 </head>
