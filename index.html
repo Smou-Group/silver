@@ -28,7 +28,6 @@
       color: var(--text);
     }
 
-    /* ===== HERO (Background image: back.*) ===== */
     .hero{
       position:relative;
       color:#fff;
@@ -38,8 +37,6 @@
       align-items:stretch;
       overflow:hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,.18);
-
-      /* يجرب أكثر من امتداد تلقائياً */
       background:
         url("back.webp") center/cover no-repeat,
         url("back.jpg")  center/cover no-repeat,
@@ -47,7 +44,6 @@
         linear-gradient(180deg, var(--navy), var(--navy2));
     }
 
-    /* overlay لزيادة وضوح النص */
     .hero::before{
       content:"";
       position:absolute; inset:0;
@@ -72,8 +68,8 @@
     /* ===== Back Button (Glass Arrow) ===== */
     .backBtn{
       position:absolute;
-      bottom:18px;        /* ✅ تحت يمين الهيرو */
-      right:18px;         /* RTL */
+      bottom:18px;
+      right:18px;
       width:46px;
       height:46px;
       border-radius:16px;
@@ -205,7 +201,6 @@
       line-height: 1.7;
     }
 
-    /* ===== Slider Section ===== */
     main{
       max-width: 1280px;
       margin: 18px auto 36px;
@@ -368,7 +363,7 @@
   <section class="hero">
     <div class="container">
 
-      <!-- ✅ زر الرجوع إلى Fuji -->
+      <!-- ✅ زر الرجوع إلى Fuji (يفتح الرابط مباشرة) -->
       <button class="backBtn" type="button" aria-label="رجوع"
         onclick="window.location.href='https://fuji.smougroup.com/';">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
